@@ -4,7 +4,6 @@ require 'thread'
 module ParallelRunner
   def self.each(object, concurency = 10, qsize = nil, &block)
     q = qsize ? SizedQueue.new(qsize) : Queue.new
-    threads = []
     producer = Thread.start(q, concurency) do |pq, pc|
       if object.instance_of? Array
         object.each_with_index {|value, index| pq.enq([[value, index], true])}
@@ -29,13 +28,13 @@ module ParallelRunner
 end
 
 class Hash
-  def each_with_parallel(concurency = 10, qsize = nil, &block)
+  def each_parallel(concurency = 10, qsize = nil, &block)
     ParallelRunner.each(self, concurency, qsize, &block)
   end
 end
 
 class Array
-  def each_with_parallel(concurency = 10, qsize = nil, &block)
+  def each_parallel(concurency = 10, qsize = nil, &block)
     ParallelRunner.each(self, concurency, qsize, &block)
   end
 end

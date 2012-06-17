@@ -8,19 +8,19 @@
 For list:  
 
     require 'parallel_runner'  
-    ['a', 'b', 'c'].each_with_parallel do |value|  
+    ['a', 'b', 'c'].each_parallel do |value|  
       # your processing  
     end
 
     require 'parallel_runner'  
-    ['a', 'b', 'c'].each_with_parallel do |value, index|  
+    ['a', 'b', 'c'].each_parallel do |value, index|  
       # your processing  
     end  
 
 For map:  
 
     require 'parallel_runner'  
-    {:name => 'alice', age => 17}.each_with_parallel do |key, value|  
+    {:name => 'alice', age => 17}.each_parallel do |key, value|  
       # your processing  
     end  
 

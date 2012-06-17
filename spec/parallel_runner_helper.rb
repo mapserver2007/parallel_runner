@@ -27,10 +27,10 @@ def map
   }
 end
 
-def time_by_each_with_parallel
+def time_by_each_parallel
   agent = Mechanize.new
   exec_time {
-    list.each_with_parallel do |url|
+    list.each_parallel do |url|
       site = agent.get(url)
       html = site.root.xpath("//title")[0].inner_html
       html.should_not be_nil
